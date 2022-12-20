@@ -52,12 +52,12 @@ function DashBoardLeft() {
             </Item>
           </Grid>
           <Grid xs={4}>
-            <Item style={{ height: 106 }}>
+            <Item style={{ height: 65 }}>
               <div style={{ textAlign: "center", color: "white" }}>
                 <p>No Data</p>
               </div>
             </Item>
-            <Item style={{ marginTop: "16px", height: 106 }}>
+            <Item style={{ marginTop: "14px", height: 65 }}>
               <div style={{ textAlign: "center", color: "white" }}>
                 <p>No Data</p>
               </div>
