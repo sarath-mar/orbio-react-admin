@@ -29,8 +29,8 @@ function DashBoardLeft() {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid xs={8}>
-            <Item style={{ height: "90%" }}>
+          <Grid xs={12} md={8}>
+            <Item style={{  }}>
               <div style={{ color: "white" }}>
                 <h4>Summary</h4>
                 {/* <CircularProgress style={{backgroundColor:"red"}} ></CircularProgress>
@@ -44,20 +44,32 @@ function DashBoardLeft() {
                  spacing={2}
                  sx={{justifyContent:"center"}}
                 >
-                  <CircularStatic />
-                  <CircularStatic />
-                  <CircularStatic />
+                    <CircularStatic />
+                    <CircularStatic />
+                    <CircularStatic />
+
+                {/* <Grid container spacing={2}>
+                  <Grid sm={12} md={4} >
+                    <CircularStatic />
+                  </Grid>
+                  <Grid sm={12} md={4} >
+                    <CircularStatic />
+                  </Grid>
+                  <Grid sm={12} md={4} >
+                    <CircularStatic />
+                  </Grid>
+                </Grid> */}
                 </Stack>
               </div>
             </Item>
           </Grid>
-          <Grid xs={4}>
-            <Item style={{ height: 65 }}>
+          <Grid xs={12} md={4}>
+            <Item style={{ height: 70 }}>
               <div style={{ textAlign: "center", color: "white" }}>
                 <p>No Data</p>
               </div>
             </Item>
-            <Item style={{ marginTop: "14px", height: 65 }}>
+            <Item style={{ marginTop: "14px", height: 70 }}>
               <div style={{ textAlign: "center", color: "white" }}>
                 <p>No Data</p>
               </div>
