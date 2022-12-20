@@ -32,7 +32,7 @@ function DashBoardLeft() {
           <Grid xs={8}>
             <Item style={{ height: "90%" }}>
               <div style={{ color: "white" }}>
-                <h4>Summary</h4>
+                <h4>Summary.</h4>
                 {/* <CircularProgress style={{backgroundColor:"red"}} ></CircularProgress>
                 <CircularProgress />
                 <div style={{ textAlign: "center", color: "white",display:"flex" }}>
