@@ -1,15 +1,22 @@
-// import logo from './logo.svg';
-// import { Typography } from '@mui/material';
+
 import './App.css';
 import ResponsiveAppBar from './Components/AppBar/ResponsiveAppBar';
 import MainDashboard from './Components/Dashboard/MainDashboard';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green, purple } from '@mui/material/colors';
+import { green, purple, yellow } from '@mui/material/colors';
+import { Box } from '@mui/system';
+import { colors } from '@mui/material';
+import Dashboard from './Components/Auditing/Dashboard/Dashboard';
+// import PieSample from './Components/Test/Pie';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: "#29368e",
+      white: "#ffffff",
+      textColor: "#2d2d2d",
+      boxShadow:'#f3f4fb'
+      // main: colors.yellow[500],
     },
     secondary: {
       main: green[500],
@@ -19,27 +26,26 @@ const theme = createTheme({
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
     <ThemeProvider theme={theme}>
-      <div style={{ textAlign: "center", backgroundColor: "#1b212d", minHeight: "100vh" }}>
-        <ResponsiveAppBar  />
-        
-        <MainDashboard/>
+      <div
+      // style={{ textAlign: "center", backgroundColor: "#1b212d", minHeight: "100vh" }}
+      >
+        <ResponsiveAppBar>
+          <MainDashboard />
+          {/* <Dashboard />
+          <MainDashboard /> */}
+        </ResponsiveAppBar>
+        <Box
+          component="main"
+          style={{}}
+          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+        >
+          {/* <PieSample/> */}
+          {/* <Dashboard /> */}
+          {/* <MainDashboard /> */}
+
+        </Box>
+
       </div>
     </ThemeProvider>
   );
