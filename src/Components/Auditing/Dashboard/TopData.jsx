@@ -41,7 +41,7 @@ export default function TopData(props) {
         <Grid container spacing={2}>
           <Grid xs={12}>
             <Paper elevation={1} sx={{ p: 1, pl: 3, pr: 3, pb: 6 }}>
-            <Box
+              <Box
                 sx={{
                   color: "primary.textColor",
                   mb: 2,
@@ -70,26 +70,26 @@ export default function TopData(props) {
                   View All
                 </Button>
               </Box>
-              <Box sx={{ mt: 4 ,height:"32vh",overflowY:"auto"}}>
+              <Box sx={{ mt: 4, height: "32vh", overflowY: "auto" }}>
                 {progressContentData.map((x) => (
                   <Box
                     sx={{
                       p: 1,
-                      display:"flex",
-                      justifyContent:"space-between",
-                      mr:3
+                      display: "flex",
+                      justifyContent: "space-between",
+                      mr: 3,
                     }}
                   >
                     {/* <Grid container spacing={4} columnSpacing={3}>
                       <Grid xs={12} sm={7}> */}
-                        <Typography sx={{ fontWeight: "500" }}>
-                          {" "}
-                          {x.name}
-                        </Typography>
-                      {/* </Grid>
+                    <Typography sx={{ fontWeight: "500" }}>
+                      {" "}
+                      {x.name}
+                    </Typography>
+                    {/* </Grid>
                       <Grid xs={12} sm={5}> */}
-                        <Typography>{`Rs ${x.price}`}</Typography>
-                      {/* </Grid>
+                    <Typography>{`Rs ${x.price}`}</Typography>
+                    {/* </Grid>
                     </Grid> */}
                   </Box>
                 ))}

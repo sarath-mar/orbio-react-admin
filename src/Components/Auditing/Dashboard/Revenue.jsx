@@ -2,11 +2,10 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Button, Typography } from "@mui/material";
-import PieChartNew from "./PieChartNew";
+import { Typography } from "@mui/material";
 import RevenuePie from "./RevenuePie";
-
 import "./Dashboard.css";
+
 function Revenue() {
   let progressData = [
     {
@@ -113,7 +112,11 @@ function Revenue() {
                       mt: 4,
                     }}
                   >
-                    <Grid container spacing={{xs: 1, sm: 4}} columnSpacing={3}>
+                    <Grid
+                      container
+                      spacing={{ xs: 1, sm: 4 }}
+                      columnSpacing={3}
+                    >
                       <Grid xs={12} sm={7}>
                         <Typography sx={{ fontWeight: "700" }}>
                           {" "}

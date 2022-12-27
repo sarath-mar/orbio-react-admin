@@ -1,35 +1,4 @@
-/* .pie-chart{
-    padding: 0 300px 0 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: yellow;
-    
-}
-
-.pie-count{
-    width: 200px;
-}
-.pie-count p{
-    
-    padding: 0;
-    margin: 0;
-}
-.pie-data{
-display: flex;
-background-color: green;
-
-align-items: center;
-flex: 1;
-}
-.circle{
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background-color: red;
-} */
 .pie {
-  /* background-color: red; */
   display: flex;
   align-items: center;
 }
@@ -55,24 +24,17 @@ flex: 1;
   width: 10px;
   border-radius: 50%;
   margin: 0px 10px;
-  /* background-color: red; */
 }
 .grid-pie {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 .pie-data {
-  /* display: flex; */
-  /* background-color: green; */
-  /* margin: 20px 0px;  */
   align-items: center;
   flex: 1;
 }
 .revenu-loop {
   padding: 0px 3vw;
-  /* display: "flex"; */
-  /* justify-content: "space-between"; */
 }
 @media screen and (max-width: 580px) {
   .pie {
@@ -81,12 +43,9 @@ flex: 1;
     justify-content: center;
   }
   .pie-chart {
-    /* background-color: rgb(99, 150, 91); */
     width: 70%;
-    /* flex: 1; */
   }
   .pie-content {
-    /* background-color: blue; */
     width: 100%;
   }
   .pie-chart-rev {
@@ -94,12 +53,5 @@ flex: 1;
   }
   .pie-content-rev {
     width: 100%;
-  }
-  .revenu-loop {
-    /* padding: 0px 5vw;
-    display: "flex";
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
   }
 }

@@ -51,7 +51,7 @@ export default function PieChartNew() {
     },
     { text: "Office Maintenance", data: 2, color: "#ffeeb3" },
   ];
-  let totalValue=data.datasets[0].data.reduce((sum,x)=>sum+x,0)
+  let totalValue = data.datasets[0].data.reduce((sum, x) => sum + x, 0);
   // 12, 19, 3, 5, 2, 3
   //    ,
 
@@ -72,8 +72,8 @@ export default function PieChartNew() {
                     className="circle"
                   ></div>
                   <div className="pie-count">
-                    <p>{`${Math.round((x.data/totalValue)*100)} %`}</p>
-                    <p style={{fontSize:"10px"}}>{x.text} </p>
+                    <p>{`${Math.round((x.data / totalValue) * 100)} %`}</p>
+                    <p style={{ fontSize: "10px" }}>{x.text} </p>
                   </div>
                 </div>
               </Grid>

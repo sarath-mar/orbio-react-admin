@@ -1,13 +1,8 @@
 
 import './App.css';
 import ResponsiveAppBar from './Components/AppBar/ResponsiveAppBar';
-import MainDashboard from './Components/Dashboard/MainDashboard';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green, purple, yellow } from '@mui/material/colors';
-import { Box } from '@mui/system';
-import { colors } from '@mui/material';
-import Dashboard from './Components/Auditing/Dashboard/Dashboard';
-// import PieSample from './Components/Test/Pie';
+import { green, } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {

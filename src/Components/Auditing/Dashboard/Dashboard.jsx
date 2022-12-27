@@ -7,6 +7,7 @@ import Assests from "./Assests";
 import TopExpenses from "./TopExpenses";
 import Revenue from "./Revenue";
 import TopData from "./TopData";
+
 function Dashboard() {
   const runAuditSvg = (
     <svg
@@ -122,7 +123,7 @@ function Dashboard() {
           <TopData heading={"Top Debitors"} />
         </Grid>
         <Grid xs={12} md={6}>
-        <TopData heading={"Top Creditors"} />
+          <TopData heading={"Top Creditors"} />
         </Grid>
       </Grid>
     </Box>
