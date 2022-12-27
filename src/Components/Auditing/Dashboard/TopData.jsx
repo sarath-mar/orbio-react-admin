@@ -40,7 +40,7 @@ export default function TopData(props) {
       <Box sx={{ flexGrow: 1, mt: 5 }}>
         <Grid container spacing={2}>
           <Grid xs={12}>
-            <Paper elevation={1} sx={{ p: 1, pl: 3, pr: 3, pb: 6 }}>
+            <Paper elevation={3} sx={{ p: 1, pl: 3, pr: 3, pb: 6 }}>
               <Box
                 sx={{
                   color: "primary.textColor",
