@@ -4,6 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import moment from 'moment/moment';
 import { Button } from '@mui/material';
 import Assests from './Assests';
+import TopExpenses from './TopExpenses';
 function Dashboard() {
     const runAuditSvg = <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_7_714)">
@@ -24,7 +25,7 @@ function Dashboard() {
         </defs>
     </svg>
     return (
-        <Box sx={{ flexGrow: 1, m: 1 }}>
+        <Box sx={{ flexGrow: 1, m: 1, pt: 6 }}>
             <Grid container spacing={1} justifyContent="space-between"
                 alignItems={{ sm: "center" }}
                 flexDirection={{ xs: 'column', sm: 'row' }}>
@@ -45,14 +46,15 @@ function Dashboard() {
                 </Grid>
                 <Grid xsOffset={"auto"} smOffset={"auto"}>
 
-                    <Button sx={{ "&:hover": { bgcolor: "primary.main", color: "primary.white" }, bgcolor: "primary.white", color: "primary.main" }} variant="outlined" size="large">
+                    <Button sx={{ "&:hover": { bgcolor: "primary.main", color: "primary.white" }, bgcolor: "primary.white", color: "primary.main", fontWeight: "700" }} variant="outlined" size="large">
                         Audit Manually
                     </Button>
                 </Grid>
             </Grid>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} >
                 <Grid xs={12} md={7}>
-                    <Assests/>
+                    <Assests />
+                    <TopExpenses />
                 </Grid>
                 <Grid xs={12} md={5}>
                 </Grid>

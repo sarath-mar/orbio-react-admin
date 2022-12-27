@@ -31,20 +31,10 @@ function App() {
       // style={{ textAlign: "center", backgroundColor: "#1b212d", minHeight: "100vh" }}
       >
         <ResponsiveAppBar>
-          <MainDashboard />
+          {/* <MainDashboard /> */}
           {/* <Dashboard />
           <MainDashboard /> */}
         </ResponsiveAppBar>
-        <Box
-          component="main"
-          style={{}}
-          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-        >
-          {/* <PieSample/> */}
-          {/* <Dashboard /> */}
-          {/* <MainDashboard /> */}
-
-        </Box>
 
       </div>
     </ThemeProvider>
