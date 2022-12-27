@@ -8,7 +8,7 @@ import TopExpenses from "./TopExpenses";
 import Revenue from "./Revenue";
 import TopData from "./TopData";
 
-function Dashboard() {
+function Dashboard(props) {
   const runAuditSvg = (
     <svg
       width="56"
@@ -92,7 +92,7 @@ function Dashboard() {
             ></div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <h4 style={{ marginRight: "10px" }}>Run Audit</h4>
-              {runAuditSvg}
+              <span style={{cursor:"pointer"}} onClick={()=>props.showAudit()}>{runAuditSvg}</span>
             </div>
           </div>
         </Grid>
