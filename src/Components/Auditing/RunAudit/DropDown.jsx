@@ -29,7 +29,7 @@ export default function DropDown() {
       </li>
       <li>
         <WarningIcon color="warning" />
-        <p>The opening balance is wrong as it is a credit balance</p>{" "}
+        <p>The opening balance is wrong as it is a credit balance.</p>{" "}
       </li>
     </ul>
   );
