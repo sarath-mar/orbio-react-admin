@@ -92,7 +92,12 @@ function Dashboard(props) {
             ></div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <h4 style={{ marginRight: "10px" }}>Run Audit</h4>
-              <span style={{cursor:"pointer"}} onClick={()=>props.showAudit()}>{runAuditSvg}</span>
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() => props.showAudit()}
+              >
+                {runAuditSvg}
+              </span>
             </div>
           </div>
         </Grid>
@@ -111,18 +116,18 @@ function Dashboard(props) {
           </Button>
         </Grid>
       </Grid>
-      <Grid container spacing={1}>
-        <Grid xs={12} md={7}>
+      <Grid container spacing={1} sx={{ alignItems: "stretch" }}>
+        <Grid sm={12} md={7}>
           <Assests />
           <TopExpenses />
         </Grid>
-        <Grid xs={12} md={5}>
+        <Grid sm={12} md={5}>
           <Revenue />
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid sm={12} md={6}>
           <TopData heading={"Top Debitors"} />
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid sm={12} md={6}>
           <TopData heading={"Top Creditors"} />
         </Grid>
       </Grid>
