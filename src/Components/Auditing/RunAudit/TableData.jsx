@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
@@ -16,17 +15,15 @@ import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
-import { Grid } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import moment from 'moment';
-import "./RunAudit.css"
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import moment from "moment";
+import "./RunAudit.css";
+import FilterListIcon from "@mui/icons-material/FilterList";
 function createData(name, calories, fat, carbs, protein) {
   return {
     name,
@@ -37,19 +34,18 @@ function createData(name, calories, fat, carbs, protein) {
   };
 }
 let tableData = [
-  createData('2022-4-1', "Opening Balance", "", 3000, 0),
-  createData('2022-3-11', "Conveyance Expenses", "Receipt", 500, 0),
-  createData('2022-9-10', "Office Expenses", "Bank", 500, 20000),
-  createData('2022-4-13', "Factory Maintainence", "Receipt", 50000, 0),
-  createData('2022-4-21', "Medical Expenses", "Bank", 0, 60000),
-  createData('2022-5-1', "Fuel Expenses", "Bank", 0, 60000),
-  createData('2022-9-1', "Transport Charges", "Receipt", 50000, 0),
-  createData('2022-2-10', "Opening Balance One", "Receipt", 6000, 0),
-  createData('2022-2-1', "Conveyance Expenses one", "Receipt", 50000, 0),
-  createData('2022-3-1', "Conveyance Expenses", "Receipt", 0, 6000),
-  createData('2022-4-16', "Factory Maintainence", "Receipt", 0, 50),
+  createData("2022-4-1", "Opening Balance", "", 3000, 0),
+  createData("2022-3-11", "Conveyance Expenses", "Receipt", 500, 0),
+  createData("2022-9-10", "Office Expenses", "Bank", 500, 20000),
+  createData("2022-4-13", "Factory Maintainence", "Receipt", 50000, 0),
+  createData("2022-4-21", "Medical Expenses", "Bank", 0, 60000),
+  createData("2022-5-1", "Fuel Expenses", "Bank", 0, 60000),
+  createData("2022-9-1", "Transport Charges", "Receipt", 50000, 0),
+  createData("2022-2-10", "Opening Balance One", "Receipt", 6000, 0),
+  createData("2022-2-1", "Conveyance Expenses one", "Receipt", 50000, 0),
+  createData("2022-3-1", "Conveyance Expenses", "Receipt", 0, 6000),
+  createData("2022-4-16", "Factory Maintainence", "Receipt", 0, 50),
 ];
-
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -66,11 +62,6 @@ function getComparator(order, orderBy) {
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
-
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -85,40 +76,40 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'date',
+    id: "date",
     numeric: false,
     disablePadding: true,
-    label: 'Date',
+    label: "Date",
   },
   {
-    id: 'particulars',
+    id: "particulars",
     numeric: true,
     disablePadding: false,
-    label: 'Particulars',
+    label: "Particulars",
   },
   {
-    id: 'voucher',
+    id: "voucher",
     numeric: true,
     disablePadding: false,
-    label: 'Voucher',
+    label: "Voucher",
   },
   {
-    id: 'debit',
+    id: "debit",
     numeric: true,
     disablePadding: false,
-    label: 'Debit',
+    label: "Debit",
   },
   {
-    id: 'credit',
+    id: "credit",
     numeric: true,
     disablePadding: false,
-    label: 'Credit',
+    label: "Credit",
   },
   {
-    id: 'balance',
+    id: "balance",
     numeric: true,
     disablePadding: false,
-    label: 'Balance',
+    label: "Balance",
   },
 ];
 
@@ -152,9 +143,9 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={'left'}
+            align={"left"}
             // align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -162,7 +153,10 @@ function EnhancedTableHead(props) {
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <Typography sx={{ fontWeight: "700" }}>
+                {headCell.label}
+              </Typography>
+              <FilterListIcon />
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -187,7 +181,7 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-  const [checked, setChecked] = React.useState(false)
+  const [checked, setChecked] = React.useState(false);
   const handleChange = () => {
     setChecked(!checked);
   };
@@ -215,38 +209,45 @@ function EnhancedTableToolbar(props) {
           {numSelected} selected
         </Typography>
       ) : (
-        <Box sx={{ display: "flex", alignItems: "center", pt: 2, justifyContent: "space-between", width: "100%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            pt: 2,
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
           <MoreVertIcon />
-          <Typography
-            sx={{ fontWeight: "900" }}
-            variant="h7"
-            id="tableTitle"
-          >
+          <Typography sx={{ fontWeight: "900" }} variant="h7" id="tableTitle">
             Cash in Hand
           </Typography>
           <Box sx={{ display: "flex" }}>
             <Typography
               sx={{ fontWeight: "600" }}
-            // variant="h9"
+              // variant="h9"
             >
               The opening balance is wrong as it is a credit balance
-
             </Typography>
             <ExpandMoreIcon sx={{}} />
           </Box>
           <Box sx={{ display: "flex" }}>
             <Typography
               sx={{ fontWeight: "400" }}
-            // variant="h9"
+              // variant="h9"
             >
               {moment("2022-4-1").format("DD-MMM-YYYY")} To{" "}
               {moment().format("DD-MMM-YYYY")}
-
             </Typography>
             <CalendarMonthIcon sx={{ ml: 1 }} />
           </Box>
-          <Switch checked={checked} onChange={()=>{props.switchChanged(checked);handleChange()}} />
-
+          <Switch
+            checked={checked}
+            onChange={() => {
+              props.switchChanged(checked);
+              handleChange();
+            }}
+          />
         </Box>
 
         //    <Typography variant="h7" sx={{ fontWeight: "900", p: 1 }}>
@@ -260,7 +261,8 @@ function EnhancedTableToolbar(props) {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (""
+      ) : (
+        ""
         // <Tooltip title="Filter list">
         //   <IconButton>
         //     <FilterListIcon />
@@ -280,20 +282,32 @@ export default function TableData() {
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
+  const dense = false;
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  let [rows, setRows] = React.useState(tableData)
+  let [rows, setRows] = React.useState(tableData);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
-const switchChanged=(checked)=>{
-  console.log("called",checked)
-  console.log(tableData)
-  let newtableData
-}
+  const switchChanged = (checked) => {
+    console.log("called", checked);
+    console.log(tableData);
+    if (!checked) {
+      let newtableData = [];
+      tableData.forEach((x) => {
+        if (x.carbs - x.protein < 0) {
+          newtableData.push(x);
+        }
+      });
+      console.log(newtableData);
+      setRows(newtableData);
+    } else {
+      setRows(tableData);
+    }
+  };
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.name);
@@ -332,9 +346,9 @@ const switchChanged=(checked)=>{
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
+  // const handleChangeDense = (event) => {
+  //   setDense(event.target.checked);
+  // };
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
@@ -343,12 +357,15 @@ const switchChanged=(checked)=>{
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper elevation={0} sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar switchChanged={(checked)=>switchChanged(checked )} numSelected={selected.length} />
-        {/* <TableContainer> */}
+    <Box sx={{ overflow: "auto" }}>
+      <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
+        <Paper elevation={0} sx={{ width: "100%", mb: 2 }}>
+          <EnhancedTableToolbar
+            switchChanged={(checked) => switchChanged(checked)}
+            numSelected={selected.length}
+          />
+          {/* <TableContainer> */}
           <Table
-            sx={{ minWidth: 300 }}
             aria-labelledby="tableTitle"
             // size={'small'}
             size={dense ? "small" : "medium"}
@@ -377,16 +394,16 @@ const switchChanged=(checked)=>{
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
-                      color='primary'
+                      color="primary"
                       // sx={{
                       //   "& th": {
                       //     color: "red"
                       //   }
                       // }}
 
-                      className='error'
+                      className="error"
                     >
-                      <TableCell padding="checkbox" >
+                      <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -400,15 +417,40 @@ const switchChanged=(checked)=>{
                         id={labelId}
                         scope="row"
                         padding="none"
-                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ''}
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ""}
                       >
                         {moment(row.name).format("DD-MMM-YY")}
                       </TableCell>
-                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.calories}</TableCell>
-                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.fat}</TableCell>
-                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.carbs ? row.carbs : ""}</TableCell>
-                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.protein ? row.protein : ""}</TableCell>
-                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.carbs - row.protein}</TableCell>
+                      <TableCell
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ""}
+                        align="left"
+                      >
+                        {row.calories}
+                      </TableCell>
+                      <TableCell
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ""}
+                        align="left"
+                      >
+                        {row.fat}
+                      </TableCell>
+                      <TableCell
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ""}
+                        align="left"
+                      >
+                        {row.carbs ? row.carbs : ""}
+                      </TableCell>
+                      <TableCell
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ""}
+                        align="left"
+                      >
+                        {row.protein ? row.protein : ""}
+                      </TableCell>
+                      <TableCell
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ""}
+                        align="left"
+                      >
+                        {row.carbs - row.protein}
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -434,12 +476,7 @@ const switchChanged=(checked)=>{
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-
-        <FormControlLabel
-          control={<Switch checked={dense} onChange={handleChangeDense} />}
-          label="Dense padding"
-        />
-      {/* </Box> */}
+      </Box>
     </Box>
   );
 }
