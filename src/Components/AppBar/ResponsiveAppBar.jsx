@@ -8,9 +8,8 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import { IconButton } from "@mui/material";
+import { IconButton, useMediaQuery, useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled } from "@mui/material/styles";
 
 import MuiAppBar from "@mui/material/AppBar";
@@ -272,13 +271,19 @@ export default function PermanentDrawerLeft(props) {
   ];
   const [open, setOpen] = React.useState(false);
   const [showAuditing, setShowAuditing] = React.useState(false);
+  let largeScreen = useMediaQuery(useTheme().breakpoints.up("sm"));
+  React.useEffect(() => {
+    if (largeScreen) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [largeScreen]);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(!open);
   };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+
   const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     ({ theme, open }) => ({
       flexGrow: 1,
@@ -332,13 +337,19 @@ export default function PermanentDrawerLeft(props) {
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
                 edge="start"
-                sx={{ mr: 2, ...(open && { display: "none" }) }}
+                sx={{ mr: 2, mt: -1, ...(largeScreen && { display: "none" }) }}
               >
                 <MenuIcon color="primary" />
               </IconButton>
             }
-            <span onClick={()=>{setShowAuditing(x=>!x)}}>{backIcon}</span>
-            
+            <span
+              onClick={() => {
+                setShowAuditing((x) => !x);
+              }}
+            >
+              {backIcon}
+            </span>
+
             <Typography
               sx={{ ml: 3 }}
               color={"primary.textColor"}
@@ -357,6 +368,7 @@ export default function PermanentDrawerLeft(props) {
         </Toolbar>
       </AppBar>
       <Drawer
+        onClick={!largeScreen && handleDrawerOpen}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -371,12 +383,12 @@ export default function PermanentDrawerLeft(props) {
         open={open}
       >
         {/* <Toolbar /> */}
-        <IconButton
+        {/* <IconButton
           style={{ marginLeft: "auto", color: "white" }}
           onClick={handleDrawerClose}
         >
           {<ChevronLeftIcon />}
-        </IconButton>
+        </IconButton> */}
         <div
           style={{
             display: "flex",
@@ -446,7 +458,15 @@ export default function PermanentDrawerLeft(props) {
           component="main"
           sx={{ flexGrow: 1, bgcolor: "background.default", p: 3, pt: 4 }}
         >
-          {showAuditing ?  <RunAudit/> : <Dashboard showAudit={()=>{setShowAuditing(true)}} /> } 
+          {showAuditing ? (
+            <RunAudit />
+          ) : (
+            <Dashboard
+              showAudit={() => {
+                setShowAuditing(true);
+              }}
+            />
+          )}
           {/* {props.children} */}
         </Box>
       </Main>

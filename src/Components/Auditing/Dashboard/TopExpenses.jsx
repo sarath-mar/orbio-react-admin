@@ -41,7 +41,7 @@ export default function TopExpenses() {
                   View All
                 </Button>
               </Box>
-              <Box>
+              <Box sx={{}}>
                 <PieChartNew />
               </Box>
             </Paper>
