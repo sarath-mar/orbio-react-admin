@@ -16,6 +16,18 @@ const theme = createTheme({
     secondary: {
       main: green[500],
     },
+    overrides: {
+      MuiAccordion: {
+        root: {
+          boxShadow: "0px 0px 0px"
+        }
+      }
+    },
+    props: {
+      MuiAccordion: {
+        elevation: 0
+      }
+    }
   },
 });
 
