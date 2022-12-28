@@ -21,7 +21,11 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import moment from 'moment';
+import "./RunAudit.css"
 function createData(name, calories, fat, carbs, protein) {
   return {
     name,
@@ -31,22 +35,20 @@ function createData(name, calories, fat, carbs, protein) {
     protein,
   };
 }
-
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+let tableData = [
+  createData('2022-4-1', "Opening Balance", "", 3000, 0),
+  createData('2022-3-11', "Conveyance Expenses", "Receipt", 500, 0),
+  createData('2022-9-10', "Office Expenses", "Bank", 500, 20000),
+  createData('2022-4-13', "Factory Maintainence", "Receipt", 50000, 0),
+  createData('2022-4-21', "Medical Expenses", "Bank", 0, 60000),
+  createData('2022-5-1', "Fuel Expenses", "Bank", 0, 60000),
+  createData('2022-9-1', "Transport Charges", "Receipt", 50000, 0),
+  createData('2022-2-10', "Opening Balance One", "Receipt", 6000, 0),
+  createData('2022-2-1', "Conveyance Expenses one", "Receipt", 50000, 0),
+  createData('2022-3-1', "Conveyance Expenses", "Receipt", 0, 6000),
+  createData('2022-4-16', "Factory Maintainence", "Receipt", 0, 50),
 ];
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -82,34 +84,40 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'date',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Date',
   },
   {
-    id: 'calories',
+    id: 'particulars',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Particulars',
   },
   {
-    id: 'fat',
+    id: 'voucher',
     numeric: true,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Voucher',
   },
   {
-    id: 'carbs',
+    id: 'debit',
     numeric: true,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Debit',
   },
   {
-    id: 'protein',
+    id: 'credit',
     numeric: true,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Credit',
+  },
+  {
+    id: 'balance',
+    numeric: true,
+    disablePadding: false,
+    label: 'Balance',
   },
 ];
 
@@ -137,7 +145,8 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={'left'}
+            // align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -171,7 +180,10 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-
+  const [checked, setChecked] = React.useState(false)
+  const handleChange = () => {
+    setChecked(!checked);
+  };
   return (
     <Toolbar
       sx={{
@@ -193,14 +205,43 @@ function EnhancedTableToolbar(props) {
           {numSelected} selected
         </Typography>
       ) : (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Nutrition
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", pt: 2, justifyContent: "space-between", width: "100%" }}>
+          <MoreVertIcon />
+          <Typography
+            sx={{ fontWeight: "900" }}
+            variant="h7"
+            id="tableTitle"
+          >
+            Cash in Hand
+          </Typography>
+          <Box sx={{ display: "flex" }}>
+            <Typography
+              sx={{ fontWeight: "600" }}
+            // variant="h9"
+            >
+              The opening balance is wrong as it is a credit balance
+
+            </Typography>
+            <ExpandMoreIcon sx={{}} />
+          </Box>
+          <Box sx={{ display: "flex" }}>
+            <Typography
+              sx={{ fontWeight: "400" }}
+            // variant="h9"
+            >
+              {moment("2022-4-1").format("DD-MMM-YYYY")} To{" "}
+              {moment().format("DD-MMM-YYYY")}
+
+            </Typography>
+            <CalendarMonthIcon sx={{ ml: 1 }} />
+          </Box>
+          <Switch checked={checked} onChange={()=>{props.switchChanged(checked);handleChange()}} />
+
+        </Box>
+
+        //    <Typography variant="h7" sx={{ fontWeight: "900", p: 1 }}>
+        //    Assets / Liabilities
+        //  </Typography>
       )}
 
       {numSelected > 0 ? (
@@ -209,12 +250,12 @@ function EnhancedTableToolbar(props) {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+      ) : (""
+        // <Tooltip title="Filter list">
+        //   <IconButton>
+        //     <FilterListIcon />
+        //   </IconButton>
+        // </Tooltip>
       )}
     </Toolbar>
   );
@@ -230,14 +271,19 @@ export default function TableData() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  let [rows, setRows] = React.useState(tableData)
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
+const switchChanged=(checked)=>{
+  console.log("called",checked)
+  console.log(tableData)
+  let newtableData
+}
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.name);
@@ -289,7 +335,7 @@ export default function TableData() {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper elevation={0} sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar switchChanged={(checked)=>switchChanged(checked )} numSelected={selected.length} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -320,8 +366,16 @@ export default function TableData() {
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
+                      color='primary'
+                      // sx={{
+                      //   "& th": {
+                      //     color: "red"
+                      //   }
+                      // }}
+
+                      className='error'
                     >
-                      <TableCell padding="checkbox">
+                      <TableCell padding="checkbox" >
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -335,13 +389,15 @@ export default function TableData() {
                         id={labelId}
                         scope="row"
                         padding="none"
+                        sx={row.carbs - row.protein < 0 ? { color: "red" } : ''}
                       >
-                        {row.name}
+                        {moment(row.name).format("DD-MMM-YY")}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.calories}</TableCell>
+                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.fat}</TableCell>
+                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.carbs ? row.carbs : ""}</TableCell>
+                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.protein ? row.protein : ""}</TableCell>
+                      <TableCell sx={row.carbs - row.protein < 0 ? { color: "red" } : ''} align="left">{row.carbs - row.protein}</TableCell>
                     </TableRow>
                   );
                 })}

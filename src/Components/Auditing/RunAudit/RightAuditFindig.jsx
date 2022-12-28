@@ -30,11 +30,11 @@ export default  function RightAudtiFinding() {
         <Grid container spacing={2}>
           <Grid xs={12}>
             <Paper elevation={3} sx={{ p: 1, pl: 3, pr: 3, pb: 6 }}>
-              <Box sx={{ color: "primary.textColor", mb: 2, mt: 3 }}>
+              {/* <Box sx={{ color: "primary.textColor", mb: 2, mt: 3 }}>
                 <Typography variant="h7" sx={{ fontWeight: "900", p: 1 }}>
                   Assets / Liabilities
                 </Typography>
-              </Box>
+              </Box> */}
               <Box>
                <TableData/>
               </Box>
