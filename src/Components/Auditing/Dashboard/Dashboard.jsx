@@ -117,17 +117,17 @@ function Dashboard(props) {
         </Grid>
       </Grid>
       <Grid container spacing={1} sx={{ alignItems: "stretch" }}>
-        <Grid sm={12} md={7}>
+        <Grid xs={12} md={7}>
           <Assests />
           <TopExpenses />
         </Grid>
-        <Grid sm={12} md={5}>
+        <Grid xs={12} md={5}>
           <Revenue />
         </Grid>
-        <Grid sm={12} md={6}>
+        <Grid xs={12} md={6}>
           <TopData heading={"Top Debitors"} />
         </Grid>
-        <Grid sm={12} md={6}>
+        <Grid xs={12} md={6}>
           <TopData heading={"Top Creditors"} />
         </Grid>
       </Grid>
